@@ -2571,7 +2571,7 @@ input, select, textarea {
 
 			ul.items > li {
 				padding-left: 0;
-				margin: 0 8rem 3rem 0;		/* change the right margin */
+				margin: 0 0 1rem 0;		/* change the right margin */
 			}
 
 				ul.items > li > h3 {
