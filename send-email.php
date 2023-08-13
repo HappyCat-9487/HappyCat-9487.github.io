@@ -21,5 +21,13 @@ $mail->Port = 587;
 $mail->Username = "lianglu3585@gmail.com"
 $mail->Password = "HappyCat-9487"
 
-$mail->setForm
+$mail->setFrom($email, $name);
+$mail->addAddress("lianglu3366@gmail.com", "Mr. Lu")
+
+$mail->Subject = $subject;
+$mail->Body = $message;
+
+$mail->send();
+
+echo "email sent";
 
