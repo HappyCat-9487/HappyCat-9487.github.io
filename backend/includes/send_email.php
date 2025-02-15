@@ -1,40 +1,40 @@
 <?php
-
-$name = $_POST["name"];
-$email = $_POST["email"];
-$email = $_POST["subject"];
-$message = $_POST["message"];
-
-require "vendor/autoload.php";
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-$mail = new PHPMailer(true);
+require "../../vendor/autoload.php";
 
-try{
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-    $mail->isSMTP();
-    $mail->Host = "smtp.gmail.com";
-    $mail->SMTPAuth = true;
+class SendEmail{
+    public function sendEmail($name, $email, $subject, $message){
 
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port = 587;
+        $mail = new PHPMailer(true);
 
-    $mail->Username = "ericcool@gmail.com";
-    $mail->Password = "tifrnbjthrzhejwt";
-
-    $mail->setFrom($email, $name);
-    $mail->addAddress("lianglu3366@gmail.com", "Mr. Lu");
-
-    $mail->Subject = $subject;
-    $mail->Body = $message;
-
-    $mail->send();
-
-    echo "email sent successfully";
-} catch (Exception $e){
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        try{
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        
+            $mail->isSMTP();
+            $mail->Host = $config['smtp_host'];
+            $mail->SMTPAuth = true;
+        
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+        
+            $mail->Username = $config['smtp_user'];
+            $mail->Password = $config['smtp_pass'];
+        
+            $mail->setFrom($email, $name);
+            $mail->addAddress("lianglu3366@gmail.com", "Mr. Lu");
+        
+            $mail->Subject = $subject;
+            $mail->Body = $message;
+        
+            $mail->send();
+        
+            return "email sent successfully";
+        } catch (Exception $e){
+            return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
+    }
 }

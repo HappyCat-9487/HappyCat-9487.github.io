@@ -9,5 +9,6 @@ if (isset($_POST['submit'])) {
 
     $mail = new SendEmail();  // Create a new SendEmail object
 
-    $mail->sendEmail($name, $email, $subject, $message);  // Call the sendEmail method
+    $result = $mail->sendEmail($name, $email, $subject, $message);  // Call the sendEmail method
+    echo $result;  // Output the result
 }
