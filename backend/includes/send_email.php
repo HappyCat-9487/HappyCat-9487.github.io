@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require "../../vendor/autoload.php";
-
+require "../config/config.php";
 
 class SendEmail{
     public function sendEmail($name, $email, $subject, $message){
