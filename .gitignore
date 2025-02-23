@@ -1,3 +1,5 @@
 .env
 .DS_Store
 */.DS_Store
+# Ignore Composer dependencies
+/vendor/
