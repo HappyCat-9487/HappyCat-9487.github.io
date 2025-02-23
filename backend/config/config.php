@@ -1,5 +1,10 @@
 <?php
-var_dump(getenv('SMTP_USER'));
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
+$dotenv->load();
+
+#var_dump(getenv('SMTP_USER'));
 
 return[
     'smtp_host' => getenv('SMTP_HOST'),
