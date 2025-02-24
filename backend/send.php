@@ -1,7 +1,9 @@
 <?php
 require 'includes/send_email.php';  // Include the send_email.php file
 
-if (isset($_POST['submit'])) {
+header("Content-Type: application/json"); // To tell the browser that it is JSON
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $subject = $_POST['subject'];
@@ -10,5 +12,12 @@ if (isset($_POST['submit'])) {
     $mail = new SendEmail();  // Create a new SendEmail object
 
     $result = $mail->sendEmail($name, $email, $subject, $message);  // Call the sendEmail method
-    echo $result;  // Output the result
+
+    if(strpos($result, "successfully") != false) {
+        echo json_encode(["success" => true, "message" => "Email sent successfully!"]);
+    } else {
+        echo json_encode(["success" => false, "message" => $result]);
+    } 
+} else {
+    echo json_encode(["success" => false, "message" => "Invalid request."]);
 }
