@@ -220,21 +220,24 @@ $(document).ready(function () {
 			submit: true  // PHP need this parameter
 		};
 
+		$(".warning-message").hide();  // Hide the previous error messages
+
 		// AJAX send request
 		$.ajax({
 			type: "POST",
 			url: "backend/send.php", 
 			data: formData,
-			dataType: "text",  //Your PHP send back the string
+			dataType: "json",  //Your PHP send back the string
 			encode: true,
 		}).done(function (response) {
-			alert(response);  //Directly show the php respond
-
-			if (response.includes("successfully")) {
+			if (response.success) {
+				alert(response.message);
 				$("#contact-form")[0].reset();  // Clear the form
+			} else {
+				$(".warning-message").text(response.message).fadeIn();
 			}
 		}).fail(function () {
-			alert("There was an error processing your request.");
+			$(".warning-message").text("There was an error processing your request.").fadeIn();
 		});
 	});
 });
