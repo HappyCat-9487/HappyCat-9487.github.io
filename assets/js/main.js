@@ -206,3 +206,35 @@
 					});
 
 })(jQuery);
+
+$(document).ready(function () {
+	$("#contact-form").submit(function (event) {
+		event.preventDefault(); // Avoid to reload the page again
+
+		// Get the form data
+		var formData = {
+			name: $('#name').val(),
+			email: $('#email').val(),
+			subject: $('#subject').val(),
+			message: $('#message').val(),
+			submit: true  // PHP need this parameter
+		};
+
+		// AJAX send request
+		$.ajax({
+			type: "POST",
+			url: "backend/send.php", 
+			data: formData,
+			dataType: "text",  //Your PHP send back the string
+			encode: true,
+		}).done(function (response) {
+			alert(response);  //Directly show the php respond
+
+			if (response.includes("successfully")) {
+				$("#contact-form")[0].reset();  // Clear the form
+			}
+		}).fail(function () {
+			alert("There was an error processing your request.");
+		});
+	});
+});
