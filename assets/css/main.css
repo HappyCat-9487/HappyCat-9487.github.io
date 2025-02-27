@@ -2328,6 +2328,15 @@ input, select, textarea {
 		display: none; 
 	}
 
+	.warning-message-vis {
+		background-color: tomato;
+		padding: 10px;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		border-radius: 5px; 
+	}
+
 /* Icon */
 
 	.icon {
