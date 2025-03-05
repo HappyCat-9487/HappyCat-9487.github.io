@@ -521,17 +521,37 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 									<li><input type="submit" value="Send Message" class="button primary" /></li>
 								</ul>
 							</form>
-							<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+
+							<div id="success-message" style="display:none; color: green; font-weight: bold; margin-top: 20px;">
+								Your submission has been processed...Thank you!
+							</div>
+
+							<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessMessage();}"></iframe>
 							
 							<script type="text/javascript">
 								var submitted = false;
 						
+								function showSuccessMessage() {
+									$('#gform').fadeOut(500, function() {
+										$('success-message').fadeIn(500);
+									});
+								}
+
 								$(document).ready(function() {
 									$('#gform').on('submit', function(e) {
-										$('#gform *').fadeOut(2000); 
-										$('#gform').prepend('<p>Your submission has been processed...</p>'); // Show the message
+										//Make sure it get sended in a correct way to prevent Javascript block it
+										submitted = true;
+
+										//Let the content in the form to fade out, and show the sucess message.
+										$('#gform *').fadeOut(500, function() {
+											$('#success-message').fadeIn(500);
+										});
+
+										// Delete the content in the form
+										$('#gform')[0].reset();
 									});
 								});
+										
 							</script>
 						</div>
 						<footer>
