@@ -501,25 +501,38 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 						<div class="content">
 							<p><strong>Thank you to review my profile.</strong> I hope you like it. If you have any question would like to ask me, you could send me messages:)</p>
 							<p class="warning-message-vis">The github webpage did not support php files and SMTP activities, so please send me your questions by your own email. Thanks!</p>
-							<form id="contact-form">
+							<!-- <form id="contact-form"> #The github webpage did not support php files and SMTP activities, so I change to use google form to receive  --> 
+							<form name="gform" id="gform" enctype="text/plain" action="https://docs.google.com/forms/d/e/1FAIpQLSdS2L9rdL228cNWdoQX8HBC-NGSZRvStODB_BllsiIsiDyLYA/formResponse?" target="hidden_iframe" onsubmit="submitted=true;">
 								<div class="fields">
 									<div class="field half">
-										<input type="text" name="name" id="name" placeholder="Name" required/>
+										<input type="text" name="entry.1307975586" id="name" placeholder="Name" required/>
 									</div>
 									<div class="field half">
-										<input type="email" name="email" id="email" placeholder="Email" required/>
+										<input type="email" name="entry.582590418" id="email" placeholder="Email" required/>
 									</div>
 									<div class="field half">
-										<input type="text" name="subject" id="subject" placeholder="Subject" required/>
+										<input type="text" name="entry.1858346665" id="subject" placeholder="Subject" required/>
 									</div>
 									<div class="field">
-										<textarea name="message" id="message" placeholder="Message" rows="7" required></textarea>
+										<textarea name="entry.579242116" id="message" placeholder="Message" rows="7" required></textarea>
 									</div>
 								</div>
 								<ul class="actions">
 									<li><input type="submit" value="Send Message" class="button primary" /></li>
 								</ul>
 							</form>
+							<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
+							
+							<script type="text/javascript">
+								var submitted = false;
+						
+								$(document).ready(function() {
+									$('#gform').on('submit', function(e) {
+										$('#gform *').fadeOut(2000); 
+										$('#gform').prepend('<p>Your submission has been processed...</p>'); // Show the message
+									});
+								});
+							</script>
 						</div>
 						<footer>
 							<ul class="items">
