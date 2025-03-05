@@ -242,15 +242,16 @@ $(document).ready(function () {
 	});
 });
 
-var submitted = false;
-				
-function showSuccessMessage() {
-	$("#gform").fadeOut(500, function() {
-		$("#success-message").fadeIn(500);
-	});
-}
 
 $(document).ready(function() {
+	var submitted = false;
+					
+	function showSuccessMessage() {
+		$("#gform").fadeOut(500, function() {
+			$("#success-message").fadeIn(500);
+		});
+	}
+	
 	$('#gform').on('submit', function(e) {
 		//Make sure it get sended in a correct way to prevent Javascript block it
 		submitted = true;
