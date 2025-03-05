@@ -527,6 +527,28 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 							</div>
 
 							<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccessMessage(); }"></iframe>
+
+							<script type="text/javascript">
+								var submitted = false;
+						
+								function showSuccessMessage() {
+									$("#gform").fadeOut(500, function() {
+										$("#success-message").fadeIn(500);
+									});
+								}
+						
+								$(document).ready(function() {
+									$('#gform').on('submit', function(e) {
+										submitted = true;
+						
+										$('#gform *').fadeOut(500, function() {
+											$("#success-message").fadeIn(500);
+										});
+						
+										$('#gform')[0].reset();
+									});
+								});
+							</script>
 						</div>
 						<footer>
 							<ul class="items">
@@ -572,6 +594,6 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-			<script src="assets/js/sendMail.js"></script>
+			<!-- <script src="assets/js/sendMail.js"></script>  // Still need to fix it to load it from sendMail.js -->
 	</body>
 </html>
